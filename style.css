@@ -1,0 +1,1726 @@
+/* ========================================
+   GLOBAL
+======================================== */
+
+html {
+    background: #000;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+
+    background: #000;
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    overflow-x: hidden;
+}
+
+
+/* ========================================
+   INTRO SCREEN
+======================================== */
+
+.intro {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #171717 0%,
+            #050505 45%,
+            #000 100%
+        );
+
+    transition: opacity 1s ease;
+}
+
+.intro.fade-out {
+    opacity: 0;
+}
+
+.intro-content {
+    width: 90%;
+    max-width: 600px;
+}
+
+.system-text {
+    color: #777;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 25px;
+
+    animation: blink 1.5s infinite;
+}
+
+#title {
+    font-size: clamp(50px, 15vw, 100px);
+
+    font-weight: 800;
+
+    letter-spacing: -4px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #999999,
+            #ffffff
+        );
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+
+    transition: opacity 1s ease;
+}
+
+.subtitle {
+    margin-top: 15px;
+
+    color: #888;
+
+    font-size: 15px;
+
+    letter-spacing: 2px;
+
+    transition: opacity 1s ease;
+}
+
+#enterButton {
+    margin-top: 45px;
+
+    padding: 15px 28px;
+
+    border: 1px solid #555;
+
+    border-radius: 50px;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease,
+        opacity 1s ease;
+}
+
+#enterButton:hover {
+    background: white;
+
+    color: black;
+
+    transform: scale(1.05);
+}
+
+
+/* ========================================
+   WELCOME SCREEN
+======================================== */
+
+.welcome {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #151515 0%,
+            #050505 50%,
+            #000 100%
+        );
+
+    animation: welcomeAppear 1.5s ease forwards;
+}
+
+.welcome-content {
+    width: 90%;
+    max-width: 650px;
+}
+
+.welcome-small {
+    color: #777;
+
+    font-size: 12px;
+
+    letter-spacing: 6px;
+
+    margin-bottom: 25px;
+}
+
+.welcome h1 {
+    font-size: clamp(45px, 12vw, 90px);
+
+    letter-spacing: -3px;
+
+    margin-bottom: 30px;
+}
+
+.welcome-message {
+    color: #999;
+
+    font-size: 16px;
+
+    line-height: 1.8;
+
+    margin: 5px 0;
+}
+
+#continueButton {
+    margin-top: 45px;
+
+    padding: 15px 30px;
+
+    border: 1px solid #555;
+
+    border-radius: 50px;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+#continueButton:hover {
+    background: white;
+
+    color: black;
+
+    transform: scale(1.05);
+}
+
+
+/* ========================================
+   HARSHA PROFILE
+======================================== */
+
+.profile {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 40px 20px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #181818 0%,
+            #050505 55%,
+            #000 100%
+        );
+
+    opacity: 0;
+
+    transition: opacity 1.5s ease;
+}
+
+.profile-visible {
+    opacity: 1;
+}
+
+.profile-content {
+    width: 100%;
+    max-width: 650px;
+}
+
+.profile-status {
+    color: #777;
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 18px;
+}
+
+.loading-line {
+    width: 180px;
+    height: 2px;
+
+    background: #222;
+
+    margin: 0 auto 25px;
+
+    overflow: hidden;
+}
+
+.loading-progress {
+    height: 100%;
+    width: 100%;
+
+    background: white;
+
+    transform: translateX(-100%);
+
+    animation: loading 1.5s ease forwards;
+}
+
+.profile-found {
+    color: #aaa;
+
+    font-size: 11px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 25px;
+}
+
+.profile h1 {
+    font-size: clamp(45px, 12vw, 90px);
+
+    letter-spacing: -4px;
+
+    margin-bottom: 10px;
+}
+
+.profile-name {
+    color: #888;
+
+    font-size: 13px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 35px;
+}
+
+.profile-card {
+    width: 100%;
+
+    border: 1px solid #292929;
+
+    border-radius: 18px;
+
+    background: rgba(255, 255, 255, 0.03);
+
+    backdrop-filter: blur(10px);
+
+    overflow: hidden;
+}
+
+.profile-row {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 18px 20px;
+
+    border-bottom: 1px solid #222;
+
+    text-align: left;
+}
+
+.profile-row:last-child {
+    border-bottom: none;
+}
+
+.profile-row span {
+    color: #666;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+.profile-row strong {
+    color: #eee;
+
+    font-size: 13px;
+
+    text-align: right;
+}
+
+.profile-message {
+    color: #888;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    margin-top: 30px;
+}
+
+#memoriesButton {
+    margin-top: 35px;
+
+    padding: 15px 28px;
+
+    border: 1px solid #555;
+
+    border-radius: 50px;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+#memoriesButton:hover {
+    background: white;
+
+    color: black;
+
+    transform: scale(1.05);
+}
+
+
+/* ========================================
+   MEMORY ARCHIVES
+======================================== */
+
+.archives {
+    min-height: 100vh;
+
+    padding: 80px 20px 100px;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #171717 0%,
+            #050505 45%,
+            #000 100%
+        );
+
+    color: white;
+
+    text-align: center;
+}
+
+.archives-header {
+    max-width: 700px;
+
+    margin: 0 auto 80px;
+}
+
+.archives-label {
+    color: #777;
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 25px;
+}
+
+.archives-header h1 {
+    font-size: clamp(50px, 12vw, 90px);
+
+    letter-spacing: -4px;
+
+    margin-bottom: 20px;
+}
+
+.archives-header p:last-child {
+    color: #888;
+
+    font-size: 15px;
+
+    line-height: 1.7;
+}
+
+.memory-list {
+    max-width: 750px;
+
+    margin: auto;
+}
+
+.memory {
+    position: relative;
+
+    margin-bottom: 120px;
+
+    text-align: left;
+}
+
+.memory-number {
+    color: #555;
+
+    font-size: 12px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 15px;
+}
+
+.memory-photo {
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    max-height: 80vh;
+
+    object-fit: contain;
+
+    border-radius: 20px;
+
+    margin-bottom: 25px;
+
+    border: 1px solid #252525;
+
+    background: #050505;
+
+    transition:
+        transform 0.8s ease,
+        filter 0.8s ease;
+}
+
+.memory-photo:hover {
+    transform: scale(1.02);
+
+    filter: brightness(1.08);
+}
+
+.memory-date {
+    color: #777;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    margin-bottom: 12px;
+}
+
+.memory-info h2 {
+    font-size: clamp(25px, 6vw, 38px);
+
+    margin-bottom: 15px;
+
+    letter-spacing: -1px;
+}
+
+.memory-info > p:last-child {
+    color: #888;
+
+    font-size: 15px;
+
+    line-height: 1.8;
+
+    max-width: 600px;
+}
+
+#nextChapterButton {
+    margin-top: 20px;
+
+    padding: 16px 28px;
+
+    border: 1px solid #555;
+
+    border-radius: 50px;
+
+    background: transparent;
+
+    color: white;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+#nextChapterButton:hover {
+    background: white;
+
+    color: black;
+
+    transform: scale(1.05);
+}
+
+
+/* ========================================
+   ANIMATIONS
+======================================== */
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+@keyframes welcomeAppear {
+    from {
+        opacity: 0;
+
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+@keyframes loading {
+    to {
+        transform: translateX(0);
+    }
+}
+
+
+/* ========================================
+   PHONE OPTIMIZATION
+======================================== */
+
+@media (max-width: 500px) {
+
+    .profile {
+        padding: 30px 15px;
+    }
+
+    .profile-row {
+        padding: 16px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 8px;
+    }
+
+    .profile-row strong {
+        text-align: left;
+    }
+
+    .profile h1 {
+        letter-spacing: -2px;
+    }
+
+    .archives {
+        padding: 60px 18px 80px;
+    }
+
+    .archives-header {
+        margin-bottom: 60px;
+    }
+
+    .memory {
+        margin-bottom: 90px;
+    }
+}
+
+
+/* ========================================
+   THE REAL STORY
+======================================== */
+
+.story {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #171717 0%,
+            #050505 50%,
+            #000 100%
+        );
+}
+
+.story-hero {
+    width: 100%;
+    max-width: 700px;
+}
+
+.story-label {
+    color: #666;
+
+    font-size: 11px;
+
+    letter-spacing: 6px;
+
+    margin-bottom: 30px;
+}
+
+.story h1 {
+    font-size: clamp(55px, 14vw, 110px);
+
+    line-height: 0.9;
+
+    letter-spacing: -5px;
+
+    margin-bottom: 35px;
+}
+
+.story-intro {
+    color: #888;
+
+    max-width: 500px;
+
+    margin: auto;
+
+    line-height: 1.8;
+
+    font-size: 15px;
+}
+
+#storyButton {
+    margin-top: 45px;
+
+    padding: 16px 30px;
+
+    border: 1px solid #555;
+
+    border-radius: 50px;
+
+    background: transparent;
+
+    color: white;
+
+    cursor: pointer;
+
+    letter-spacing: 2px;
+
+    transition: all 0.3s ease;
+}
+
+#storyButton:hover {
+    background: white;
+
+    color: black;
+
+    transform: scale(1.05);
+}
+
+
+/* ========================================
+   FUNNY ANALYSIS
+======================================== */
+
+.funny {
+    min-height: 100vh;
+
+    padding: 80px 20px;
+
+    background:
+        radial-gradient(
+            circle at top,
+            #171717,
+            #000 65%
+        );
+}
+
+.funny-content {
+    max-width: 700px;
+
+    margin: auto;
+
+    text-align: center;
+}
+
+.funny-label {
+    color: #666;
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 25px;
+}
+
+.funny h1 {
+    font-size: clamp(50px, 12vw, 90px);
+
+    line-height: 0.9;
+
+    letter-spacing: -4px;
+
+    margin-bottom: 50px;
+}
+
+.funny-card {
+    border: 1px solid #292929;
+
+    border-radius: 20px;
+
+    overflow: hidden;
+
+    background: rgba(255,255,255,0.03);
+
+    text-align: left;
+}
+
+.funny-row {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 20px;
+
+    border-bottom: 1px solid #222;
+}
+
+.funny-row:last-child {
+    border-bottom: none;
+}
+
+.funny-row span {
+    color: #555;
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+}
+
+.funny-row strong {
+    color: #ddd;
+
+    font-size: 13px;
+
+    text-align: right;
+}
+
+.funny-message {
+    color: #888;
+
+    margin-top: 35px;
+
+    line-height: 1.7;
+}
+
+#emotionalButton {
+    margin-top: 40px;
+
+    padding: 16px 28px;
+
+    border: 1px solid #555;
+
+    border-radius: 50px;
+
+    background: transparent;
+
+    color: white;
+
+    cursor: pointer;
+
+    letter-spacing: 2px;
+
+    transition: all 0.3s ease;
+}
+
+#emotionalButton:hover {
+    background: white;
+
+    color: black;
+}
+
+
+/* ========================================
+   FINAL MESSAGE
+======================================== */
+
+.final-message {
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 50px 25px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #191919,
+            #000 70%
+        );
+}
+
+.final-content {
+    max-width: 650px;
+}
+
+.final-label {
+    color: #666;
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
+
+    margin-bottom: 30px;
+}
+
+.final-content h1 {
+    font-size: clamp(55px, 14vw, 100px);
+
+    letter-spacing: -5px;
+
+    margin-bottom: 15px;
+}
+
+.final-text {
+    color: #999;
+
+    font-size: 15px;
+
+    line-height: 1.9;
+
+    margin: 20px auto;
+
+    max-width: 550px;
+}
+
+.signature {
+    margin-top: 40px;
+
+    color: white;
+
+    font-size: 13px;
+
+    letter-spacing: 2px;
+}
+
+#birthdayButton {
+    margin-top: 45px;
+
+    padding: 16px 28px;
+
+    border: 1px solid #555;
+
+    border-radius: 50px;
+
+    background: transparent;
+
+    color: white;
+
+    cursor: pointer;
+
+    letter-spacing: 2px;
+
+    transition: all 0.3s ease;
+}
+
+#birthdayButton:hover {
+    background: white;
+
+    color: black;
+}
+
+
+/* ========================================
+   BIRTHDAY REVEAL
+======================================== */
+
+.birthday {
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 40px 20px;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #222 0%,
+            #090909 45%,
+            #000 100%
+        );
+}
+
+.birthday-content {
+    max-width: 750px;
+
+    animation: birthdayAppear 2s ease;
+}
+
+.birthday-small {
+    color: #666;
+
+    font-size: 10px;
+
+    letter-spacing: 5px;
+
+    margin: 8px;
+}
+
+.birthday h1 {
+    margin-top: 50px;
+
+    font-size: clamp(60px, 15vw, 120px);
+
+    line-height: 0.85;
+
+    letter-spacing: -6px;
+}
+
+.birthday h2 {
+    font-size: clamp(35px, 8vw, 65px);
+
+    letter-spacing: -2px;
+
+    margin-top: 20px;
+}
+
+.birthday-content > p:not(.birthday-small):not(.birthday-end) {
+    max-width: 500px;
+
+    margin: 35px auto 0;
+
+    color: #999;
+
+    line-height: 1.8;
+
+    font-size: 15px;
+}
+
+.heart {
+    font-size: 45px;
+
+    margin-top: 40px;
+
+    animation: heartbeat 1.5s infinite;
+}
+
+.birthday-end {
+    margin-top: 45px;
+
+    color: #555;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+}
+
+
+/* ========================================
+   FINAL ANIMATIONS
+======================================== */
+
+@keyframes birthdayAppear {
+
+    from {
+        opacity: 0;
+
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: scale(1);
+    }
+
+}
+
+@keyframes heartbeat {
+
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 500px) {
+
+    .funny-row {
+        flex-direction: column;
+
+        gap: 8px;
+    }
+
+    .funny-row strong {
+        text-align: left;
+    }
+
+    .story h1,
+    .funny h1,
+    .final-content h1 {
+        letter-spacing: -3px;
+    }
+
+    .birthday h1 {
+        letter-spacing: -4px;
+    }
+
+}
+
+/* ========================================
+   CINEMATIC MEMORY REVEAL
+======================================== */
+
+.memory {
+    opacity: 0;
+    transform: translateY(60px);
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+}
+
+.memory.memory-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.memory-photo {
+    transform: scale(0.96);
+    filter: brightness(0.65);
+    transition:
+        transform 1.2s ease,
+        filter 1.2s ease;
+}
+
+.memory.memory-visible .memory-photo {
+    transform: scale(1);
+    filter: brightness(1);
+}
+
+
+/* ========================================
+   MUSIC CONTROL
+======================================== */
+.music-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.45);
+    color: white;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(8px);
+
+    transition: transform 0.3s ease,
+                background 0.3s ease;
+}
+
+.music-toggle:hover {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.music-toggle:hover {
+    transform: scale(1.08);
+    background: rgba(255, 255, 255, 0.12);
+}
+
+.music-toggle:active {
+    transform: scale(0.94);
+}
+
+@media (max-width: 600px) {
+
+    .music-toggle {
+        top: 14px;
+        right: 14px;
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 16px;
+    }
+}
+
+
+/* ========================================
+   PERSISTENT MUSIC CONTROL
+======================================== */
+
+.music-toggle {
+    position: fixed;
+
+    top: 22px;
+    right: 22px;
+
+    width: 46px;
+    height: 46px;
+
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.55);
+
+    color: white;
+
+    font-size: 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    z-index: 999999;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.music-toggle:hover {
+    transform: scale(1.08);
+
+    background: rgba(255, 255, 255, 0.12);
+
+    border-color: rgba(255, 255, 255, 0.65);
+}
+
+.music-toggle:active {
+    transform: scale(0.92);
+}
+
+
+/* PHONE */
+
+@media (max-width: 600px) {
+
+    .music-toggle {
+
+        top: 18px;
+        right: 18px;
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 16px;
+    }
+}
+
+/* ========================================
+   MOBILE OPTIMIZATION
+======================================== */
+
+@media (max-width: 600px) {
+
+    .intro-content {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 24px;
+        box-sizing: border-box;
+    }
+
+    .intro h1,
+    .intro .title {
+        font-size: clamp(42px, 12vw, 64px);
+        line-height: 0.95;
+        letter-spacing: -2px;
+        max-width: 100%;
+        overflow-wrap: normal;
+        white-space: nowrap;
+    }
+
+    .intro p,
+    .intro .subtitle {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .intro button,
+    .intro .enter-button {
+        max-width: 100%;
+        padding: 14px 22px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .intro-content .title {
+        font-size: 10vw;
+        line-height: 1;
+        letter-spacing: -2.5px;
+        white-space: nowrap;
+        width: 100%;
+        text-align: center;
+    }
+
+}
+
+/* ========================================
+   FIX HARSHAVerse TITLE CLIPPING
+======================================== */
+
+#title {
+    display: block;
+    width: auto;
+    max-width: none;
+    overflow: visible;
+    white-space: nowrap;
+    box-sizing: border-box;
+}
+
+.intro-content {
+    overflow: visible;
+}
+
+@media (max-width: 600px) {
+
+    #title {
+        font-size: 10vw;
+        letter-spacing: -2px;
+        white-space: nowrap;
+    }
+
+}
+
+/* ========================================
+   HARSHAVerse TITLE FIX
+======================================== */
+
+#title {
+    display: block;
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+    overflow: visible;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.intro-content {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow: visible;
+}
+
+@media (max-width: 600px) {
+    #title {
+        font-size: clamp(2.8rem, 12vw, 4rem);
+        letter-spacing: -2px;
+        white-space: nowrap;
+    }
+
+    .intro-content {
+        width: 100%;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+/* ========================================
+   PAGE TRANSITION
+======================================== */
+
+.page-transition {
+    animation: pageFadeIn 1.2s ease forwards;
+}
+
+@keyframes pageFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ========================================
+   ENTER BUTTON EFFECT
+======================================== */
+
+#enterButton {
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+#enterButton:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 25px rgba(255, 255, 255, 0.12);
+}
+
+#enterButton:active {
+    transform: translateY(0);
+}
+
+/* ========================================
+   MUSIC BUTTON POLISH
+======================================== */
+
+.music-toggle {
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.15);
+}
+
+.music-toggle:active {
+    transform: scale(0.95);
+}
+
+/* ========================================
+   MOBILE RESPONSIVE POLISH
+======================================== */
+
+@media (max-width: 600px) {
+
+    .intro-content {
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    #title {
+    font-size: clamp(2.3rem, 10vw, 3.5rem);
+    line-height: 0.95;
+    letter-spacing: -1.5px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+    #subtitle {
+        font-size: 0.9rem;
+        margin-top: 18px;
+    }
+
+    #enterButton {
+        margin-top: 25px;
+        padding: 12px 22px;
+        font-size: 0.75rem;
+    }
+
+    .music-toggle {
+        top: 15px;
+        right: 15px;
+        width: 42px;
+        height: 42px;
+    }
+}
+
+/* ========================================
+   CINEMATIC BACKGROUND GLOW
+======================================== */
+
+.intro {
+    position: relative;
+    overflow: hidden;
+}
+
+.intro::before {
+    content: "";
+    position: absolute;
+    inset: -20%;
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(255, 255, 255, 0.045),
+            transparent 35%
+        );
+    pointer-events: none;
+    animation: ambientGlow 6s ease-in-out infinite alternate;
+}
+
+@keyframes ambientGlow {
+    from {
+        transform: scale(1);
+        opacity: 0.55;
+    }
+
+    to {
+        transform: scale(1.08);
+        opacity: 1;
+    }
+}
+
+.intro-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* =========================================
+   ONE WISH PAGE
+========================================= */
+
+.wish-page,
+.wish-received {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #171717 0%,
+            #080808 45%,
+            #000000 100%
+        );
+
+    color: #ffffff;
+}
+
+.wish-content {
+    width: min(90%, 700px);
+    padding: 40px 20px;
+}
+
+.wish-label {
+    font-size: 11px;
+    letter-spacing: 6px;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+.wish-content h1 {
+    font-size: clamp(3rem, 10vw, 6rem);
+    margin: 0 0 25px;
+    font-weight: 800;
+    letter-spacing: -2px;
+}
+
+.wish-message {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #aaa;
+}
+
+.wish-question {
+    font-size: 20px;
+    margin-top: 25px;
+    color: #fff;
+}
+
+.wish-box {
+    margin-top: 40px;
+}
+
+#wishInput {
+    width: min(100%, 550px);
+    min-height: 150px;
+
+    padding: 18px;
+
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid #444;
+    border-radius: 12px;
+
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+
+    resize: vertical;
+    outline: none;
+
+    box-sizing: border-box;
+}
+
+#wishInput:focus {
+    border-color: #888;
+}
+
+#wishInput::placeholder {
+    color: #666;
+}
+
+.wish-limit {
+    font-size: 11px;
+    color: #555;
+    margin: 8px 0 20px;
+}
+
+#submitWishButton {
+    padding: 14px 28px;
+
+    background: transparent;
+    color: #fff;
+
+    border: 1px solid #555;
+    border-radius: 30px;
+
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease;
+}
+
+#submitWishButton:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: #aaa;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   WISH RECEIVED
+========================================= */
+
+.wish-received-content {
+    text-align: center;
+    padding: 30px;
+}
+
+.wish-received h1 {
+    font-size: clamp(3rem, 10vw, 6rem);
+    margin: 20px 0;
+}
+
+.wish-received-content > p:not(.wish-label):not(.wish-small) {
+    color: #aaa;
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.wish-heart {
+    font-size: 35px;
+    margin: 40px 0;
+}
+
+.wish-small {
+    font-size: 10px;
+    letter-spacing: 5px;
+    color: #555;
+}
+
+@media (max-width: 600px) {
+
+    .wish-content {
+        width: 90%;
+        padding: 30px 15px;
+    }
+
+    .wish-label {
+        font-size: 9px;
+        letter-spacing: 4px;
+    }
+
+    .wish-content h1 {
+        font-size: clamp(3rem, 15vw, 5rem);
+    }
+
+    .wish-message {
+        font-size: 16px;
+    }
+
+    .wish-question {
+        font-size: 18px;
+    }
+
+    #wishInput {
+        min-height: 140px;
+        font-size: 15px;
+    }
+
+    #submitWishButton {
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .wish-received h1 {
+        font-size: clamp(3rem, 15vw, 5rem);
+    }
+}

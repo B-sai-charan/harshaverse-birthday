@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HARSHAVerse | Wish Archive</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: #050505;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 30px 20px;
+        }
+
+        .container {
+            width: min(900px, 100%);
+            margin: auto;
+        }
+
+        .header {
+            margin-bottom: 35px;
+        }
+
+        .label {
+            color: #666;
+            font-size: 10px;
+            letter-spacing: 5px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            letter-spacing: -3px;
+        }
+
+        .login,
+        .archive {
+            border: 1px solid #292929;
+            border-radius: 18px;
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 12px;
+
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 8px;
+
+            color: white;
+            outline: none;
+        }
+
+        button {
+            padding: 13px 22px;
+
+            background: transparent;
+            color: white;
+
+            border: 1px solid #555;
+            border-radius: 30px;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: white;
+            color: black;
+        }
+
+        .wish {
+            padding: 22px 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .wish:last-child {
+            border-bottom: none;
+        }
+
+        .wish-text {
+            font-size: 17px;
+            line-height: 1.7;
+            color: #ddd;
+            margin-bottom: 12px;
+        }
+
+        .wish-date {
+            color: #666;
+            font-size: 11px;
+            letter-spacing: 1px;
+        }
+
+        .error {
+            color: #ff7777;
+            margin-top: 15px;
+        }
+
+        .empty {
+            color: #666;
+            padding: 30px 0;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <header class="header">
+            <p class="label">PRIVATE ACCESS</p>
+            <h1>WISH ARCHIVE</h1>
+        </header>
+
+
+        <!-- LOGIN -->
+
+        <section id="loginSection" class="login">
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Email"
+                autocomplete="email"
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Password"
+                autocomplete="current-password"
+            >
+
+            <button id="loginButton">
+                LOGIN
+            </button>
+
+            <p id="loginError" class="error"></p>
+
+        </section>
+
+
+        <!-- ARCHIVE -->
+
+        <section id="archiveSection" class="archive hidden">
+
+            <button id="logoutButton">
+                LOG OUT
+            </button>
+
+            <div id="wishes">
+                <p class="empty">
+                    Loading wishes...
+                </p>
+            </div>
+
+        </section>
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script>
+
+        const SUPABASE_URL = "https://kricnqyknurrxxyusrvf.supabase.co";
+
+        const SUPABASE_PUBLISHABLE_KEY =
+            "sb_publishable_XtH62NjqtIGJ4j8KJyj0Ww_SSIhnlkW";
+
+
+        const supabaseClient = supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_PUBLISHABLE_KEY
+        );
+
+
+        const loginSection =
+            document.getElementById("loginSection");
+
+        const archiveSection =
+            document.getElementById("archiveSection");
+
+        const loginButton =
+            document.getElementById("loginButton");
+
+        const logoutButton =
+            document.getElementById("logoutButton");
+
+        const loginError =
+            document.getElementById("loginError");
+
+        const wishesContainer =
+            document.getElementById("wishes");
+
+
+        /* LOGIN */
+
+        loginButton.addEventListener("click", async () => {
+
+            const email =
+                document.getElementById("email").value.trim();
+
+            const password =
+                document.getElementById("password").value;
+
+
+            loginError.textContent = "";
+
+
+            const { error } =
+                await supabaseClient.auth.signInWithPassword({
+                    email,
+                    password
+                });
+
+
+            if (error) {
+
+                loginError.textContent =
+                    "Login failed. Check your email and password.";
+
+                console.error(error);
+
+                return;
+            }
+
+
+            showArchive();
+
+        });
+
+
+        /* SHOW ARCHIVE */
+
+        async function showArchive() {
+
+            loginSection.classList.add("hidden");
+
+            archiveSection.classList.remove("hidden");
+
+            await loadWishes();
+
+        }
+
+
+        /* LOAD WISHES */
+
+        async function loadWishes() {
+
+            wishesContainer.innerHTML =
+                `<p class="empty">Loading wishes...</p>`;
+
+
+            const { data, error } =
+                await supabaseClient
+                    .from("wishes")
+                    .select("id, wish, created_at")
+                    .order("created_at", {
+                        ascending: false
+                    });
+
+
+            if (error) {
+
+                wishesContainer.innerHTML =
+                    `<p class="error">
+                        Unable to load wishes.
+                    </p>`;
+
+                console.error(error);
+
+                return;
+            }
+
+
+            if (!data || data.length === 0) {
+
+                wishesContainer.innerHTML =
+                    `<p class="empty">
+                        No wishes yet.
+                    </p>`;
+
+                return;
+            }
+
+
+            wishesContainer.innerHTML =
+                data.map(item => {
+
+                    const date =
+                        new Date(item.created_at)
+                            .toLocaleString();
+
+                    return `
+                        <article class="wish">
+
+                            <p class="wish-text">
+                                ${escapeHtml(item.wish)}
+                            </p>
+
+                            <p class="wish-date">
+                                ${date}
+                            </p>
+
+                        </article>
+                    `;
+
+                }).join("");
+
+        }
+
+
+        /* LOGOUT */
+
+        logoutButton.addEventListener("click", async () => {
+
+            await supabaseClient.auth.signOut();
+
+            archiveSection.classList.add("hidden");
+
+            loginSection.classList.remove("hidden");
+
+        });
+
+
+        /* SECURITY */
+
+        function escapeHtml(text) {
+
+            const div =
+                document.createElement("div");
+
+            div.textContent = text;
+
+            return div.innerHTML;
+
+        }
+
+    </script>
+
+</body>
+</html>
